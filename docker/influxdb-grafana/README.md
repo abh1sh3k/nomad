@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 collectd, influxdb and grafana can be utilized for performance metrics collection of host, jvm etc.
 
 **collectd** - It is a daemon which collects system and application performance metrics periodically and provides mechanisms to store the values in a variety of ways.
@@ -7,11 +7,11 @@ collectd, influxdb and grafana can be utilized for performance metrics collectio
 
 **grafana** - It is an open-source dashboard and graph editor for multiple datasources including influxdb.
 
-#Installation
+# Installation
 
-##collectd
+## collectd
 
-###collectd installation on CentOS 7
+### collectd installation on CentOS 7
 Install and enable EPEL repository from the default yum repository by running the following command:
 
 ```
@@ -28,7 +28,7 @@ Now, start the collectd service and enable the service to start at boot time:
 systemctl start collectd
 systemctl enable collectd
 ```
-###collectd configuration
+### collectd configuration
 By default there are many plugins enabled but we will just watch cpu, disk, load and memory stats then disable remaining plugins.
 ```
 server-1:~$ sudo nano /etc/collectd/collectd.conf
@@ -48,7 +48,7 @@ In addition to above, enable `LoadPlugin network` then add block below to the bo
 ```
 IP address above should be of Influxdb host where Influxdb will be running.
 
-##Influxdb
+## Influxdb
 No additional installation & configuration is required for Influxdb as we would be using docker image.
 
 Run through following steps to start influxdb docker container:
@@ -59,7 +59,7 @@ Run through following steps to start influxdb docker container:
 docker run --name influxdb -p 8083:8083 -p 8086:8086 -p 25826:25826/udp -v $PWD/influxdb:/var/lib/influxdb -v $PWD/influxdb.conf:/etc/influxdb/influxdb.conf:ro -v $PWD/types.db:/usr/share/collectd/types.db:ro influxdb
 ```
 
-##Grafana
+## Grafana
 No additional installation & configuration is required for Grafana as we would be using docker image.
 
 Run through following steps to start grafana docker container:
